@@ -24,3 +24,14 @@ covid1 <- covid %>%
   select(estado, semanaEpi, casosAcumulado) %>%
   filter(estado %in% c("RN", "SE", "CE", "PE", "PI", "MA", "BA", "PB", "AL"))
 View(covid1)  
+
+# Análises ---------------------------------------------------------------------------------------------------------------------------------
+
+covid2 <- covid1 %>%
+  group_by(estado, semanaEpi) %>%
+  summarise(media = mean(casosAcumulado))
+
+ggplot(covid2, aes(x = semanaEpi, y = media, 
+                   col = estado, group = estado)) +
+  geom_point() +
+  geom_line()
