@@ -7,6 +7,7 @@
 library(basesCursoR)
 library(dplyr)
 library(ggplot2)
+library(magrittr)
 
 # Identificar bases disponíveis ------------------------------------------------------------------------------------------------------------
 
@@ -19,4 +20,7 @@ View(covid)
 
 # Selecionar dados -------------------------------------------------------------------------------------------------------------------------
 
-
+covid1 <- covid %>%
+  select(estado, semanaEpi, casosAcumulado) %>%
+  filter(estado %in% c("RN", "SE", "CE", "PE", "PI", "MA", "BA", "PB", "AL"))
+View(covid1)  
